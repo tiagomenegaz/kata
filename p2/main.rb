@@ -1,48 +1,43 @@
-def get_day(line)
-  line.split(" ")[0].to_i
+def f_column(line)
+  line.split(" ")[-4].to_i
 end
 
-def get_max(line)
-  line.split(" ")[1].to_i
+def a_column(line)
+  line.split(" ")[-2].to_i
 end
 
-def get_min(line)
-  line.split(" ")[2].to_i
+def team_name_column(line)
+  line.split(" ")[1]
 end
 
-def valid_line?(line)
-  line.split(" ")[0].to_i > 0 &&
-    line.split(" ")[0].to_i <= 30 &&
-    get_min(line) > 0 &&
-    get_max(line) > 0
+def valid_row?(line)
+  line.split(" ").size == 10 && line.split[0][-1] == "."
 end
 
-def spread(max_temperature, min_temperature)
-  max_temperature - min_temperature
+def difference(f, a)
+  (f - a).abs
 end
 
-file = File.open("weather.dat", "r")
+file = File.open("football.dat", "r")
 
-min_spread = 100000000000
-min_day = 0
+min_difference = 100000000000
+team = ""
 
 while(line = file.gets)
-  line = line.gsub(/[^0-9,.]/, ' ')
+  if valid_row?(line)
 
-  if valid_line?(line)
+    f_col = f_column(line)
+    a_col = a_column(line)
 
-    min = get_min(line)
-    max = get_max(line)
+    current_difference = difference(f_col, a_col)
 
-    current_spread = spread(max, min)
-
-    if current_spread < min_spread
-      min_spread = current_spread
-      min_day    = get_day(line)
+    if current_difference < min_difference
+      min_difference = current_difference
+      team = team_name_column(line)
     end
   end
 end
 
-puts("Min day is #{min_day}")
+puts("Team is #{team}")
 
 file.close

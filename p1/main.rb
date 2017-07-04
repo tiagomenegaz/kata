@@ -17,8 +17,8 @@ def valid_row?(line)
     max_column(line) > 0
 end
 
-def spread(max_temperature, min_temperature)
-  max_temperature - min_temperature
+def spread(max, min)
+  max - min
 end
 
 file = File.open("weather.dat", "r")
