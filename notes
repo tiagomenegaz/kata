@@ -1,0 +1,28 @@
+
+fazer teste para os 2 problemas
+- resultado é o que eu espero
+- teste técnico tem a saída do terminal para testes
+- parte 3 utilizará os testes da parte 1 e 2
+- minitest ou minispec => minitest preferencialmente
+
+
+social
+- entender como API funciona
+- detalhes de implementação => restrições de serviço
+- estrutura do código pode ajudar a enteder
+- fluxo de autenticação utilizando oauth
+
+testes forçam o aprendizado
+
+mapear o domínio que está sendo utilizado
+
+_________________________________________________________________________________________
+
+- controller possui habilidates limitadas
+- amarrar menos o controller com os models
+- controller é um recurso do sistema
+- trade off => indireção código é fácil de acompanhar, mas não possui abstrações
+- mais camadas mais indireção
+- boas praticas evitam decisões arbitrárias sobre o código
+- persistencia
+- rkency
