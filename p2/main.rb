@@ -1,43 +1,15 @@
-def f_column(line)
-  line.split(" ")[-4].to_i
-end
+File.open("football.dat", "r") do |file|
+  min_spread = 100000000000
+  team = ""
+  file.each_line do |line|
+    elements = line.split(" ")
+    next if elements.size != 10 && elements[0][-1] != "."
 
-def a_column(line)
-  line.split(" ")[-2].to_i
-end
-
-def team_name_column(line)
-  line.split(" ")[1]
-end
-
-def valid_row?(line)
-  line.split(" ").size == 10 && line.split[0][-1] == "."
-end
-
-def difference(f, a)
-  (f - a).abs
-end
-
-file = File.open("football.dat", "r")
-
-min_difference = 100000000000
-team = ""
-
-while(line = file.gets)
-  if valid_row?(line)
-
-    f_col = f_column(line)
-    a_col = a_column(line)
-
-    current_difference = difference(f_col, a_col)
-
-    if current_difference < min_difference
-      min_difference = current_difference
-      team = team_name_column(line)
+    diff = (elements[-4].to_i - elements[-2].to_i).abs
+    if diff < min_spread
+      min_spread = diff
+      team = elements[1]
     end
   end
+  puts "Team is #{team}"
 end
-
-puts("Team is #{team}")
-
-file.close
