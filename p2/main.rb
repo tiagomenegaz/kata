@@ -1,14 +1,18 @@
+require "./processor"
+
 File.open("football.dat", "r") do |file|
   min_spread = 100000000000
   team = ""
   file.each_line do |line|
-    elements = line.split(" ")
-    next if elements.size != 10 && elements[0][-1] != "."
+    next if line.split(' ').size != 10
 
-    diff = (elements[-4].to_i - elements[-2].to_i).abs
+    for_goal   = Processor.line_value_at(line, -4)
+    for_againt = Processor.line_value_at(line, -2)
+    diff       = Processor.difference(for_goal, for_againt)
+
     if diff < min_spread
       min_spread = diff
-      team = elements[1]
+      team = Processor.line_element_at(line, 1)
     end
   end
   puts "Team is #{team}"
