@@ -1,4 +1,4 @@
-require "./processor"
+require "./../processor"
 
 File.open("weather.dat", "r") do |file|
   min_spread = 100000000000

@@ -1,4 +1,4 @@
-require "./processor"
+require "./../processor"
 
 File.open("football.dat", "r") do |file|
   min_spread = 100000000000
