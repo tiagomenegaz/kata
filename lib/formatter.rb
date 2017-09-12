@@ -1,3 +1,6 @@
+# The Formatter class is responsible for executing operations to space separeted
+# string given a position
+
 class Formatter
 
   def self.line_element_at(line, position)
@@ -8,9 +11,9 @@ class Formatter
     line.split(" ")[position].to_i
   end
 
-  def self.difference(x, y)
-    return unless (x.is_a?(Numeric) && y.is_a?(Numeric))
-    (x - y).abs
+  def self.difference(first_number, second_number)
+    return unless (first_number.is_a?(Numeric) && second_number.is_a?(Numeric))
+    (first_number - second_number).abs
   end
 
 end
