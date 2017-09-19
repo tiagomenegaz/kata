@@ -1,6 +1,11 @@
 require "./../lib/processor"
+require "./../lib/formatter"
+require "./../lib/configurer"
+require "./../lib/printer"
 
-elements  = IO.readlines("football.dat")
-processor = Processor.new(elements, primary: -4, secondary: -2, output_index: 1)
+config    = Configurer.new(primary: -4, secondary: -2, output_index: 1, reject_index: 0)
+raw_lines = IO.readlines("football.dat")
+formatted = Formatter.lines_formatter(raw_lines, config.reject_index)
+processor = Processor.new(formatted, config.primary, config.secondary)
 processor.run
-puts "Team is #{processor.result}"
+Printer.start(processor.result, config.output_index)

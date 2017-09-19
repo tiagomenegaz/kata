@@ -1,42 +1,44 @@
-require_relative "formatter"
-require_relative "configurer"
-
 # The Processor class is responsible for processing the given set of input lines
 # and returing the minium spread according to the main indexes
-class Processor
-  attr_reader :result, :spread, :lines, :configuration
 
-  def initialize(lines, configuration)
+class Processor
+  attr_reader :result, :spread, :lines, :primary, :secondary
+
+  def initialize(lines, primary, secondary)
     @result = nil
     @spread = 100000000000
     @lines  = lines
 
-    @configuration = configuration
+    @primary   = primary
+    @secondary = secondary
   end
 
   def run
     lines.each do |line|
-      next if Processor.invalid?(line)
-
       current_spread = spread_from(line)
 
-      if current_spread < @spread
+      if current_spread < spread
         @spread = current_spread
-        @result = Formatter.line_element_at(line, configuration.output_index)
+        @result = line
       end
     end
   end
 
   private
 
-  def self.invalid?(line)
-    Formatter.line_value_at(line, 0) == 0
+  def spread_from(line)
+    max = line_value_at(line, primary)
+    min = line_value_at(line, secondary)
+    difference(max, min)
   end
 
-  def spread_from(line)
-    max = Formatter.line_value_at(line, configuration.primary)
-    min = Formatter.line_value_at(line, configuration.secondary)
-    Formatter.difference(max, min)
+  def line_value_at(line, position)
+    line.split(" ")[position].to_i
+  end
+
+  def difference(first_number, second_number)
+    return unless (first_number.is_a?(Numeric) && second_number.is_a?(Numeric))
+    (first_number - second_number).abs
   end
 
 end

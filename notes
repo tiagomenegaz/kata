@@ -1,2 +1,4 @@
-- usar IO.readlines !File
--
+- separar a entrada da saída > dados diferentes
+- ENTRADA | PROCESSAMENTO | SAÍDA
+- um lado não vê o outro
+- camadas de abstração

@@ -3,17 +3,18 @@
 
 class Formatter
 
-  def self.line_element_at(line, position)
-    line.split(" ")[position]
+  def self.lines_formatter(lines, reject_index)
+    result = []
+    lines.each do |line|
+      result << line unless Formatter.valid?(line, reject_index)
+    end
+    result
   end
 
-  def self.line_value_at(line, position)
-    line.split(" ")[position].to_i
-  end
+  private
 
-  def self.difference(first_number, second_number)
-    return unless (first_number.is_a?(Numeric) && second_number.is_a?(Numeric))
-    (first_number - second_number).abs
+  def self.valid?(line, reject_index)
+    line.split(" ")[reject_index].to_i == 0
   end
 
 end

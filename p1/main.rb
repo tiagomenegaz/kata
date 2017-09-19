@@ -1,7 +1,11 @@
 require "./../lib/processor"
+require "./../lib/formatter"
+require "./../lib/configurer"
+require "./../lib/printer"
 
-elements  = IO.readlines("weather.dat")
-config    = Configurer.new(primary: 1, secondary: 2, output_index: 0)
-processor = Processor.new(elements, config)
+config    = Configurer.new(primary: 1, secondary: 2, output_index: 0, reject_index: 0)
+raw_lines = IO.readlines("weather.dat")
+formatted = Formatter.lines_formatter(raw_lines, config.reject_index)
+processor = Processor.new(formatted, config.primary, config.secondary)
 processor.run
-puts "#{processor.result}"
+Printer.start(processor.result, config.output_index)
