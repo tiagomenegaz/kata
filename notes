@@ -1,4 +1,15 @@
-- separar a entrada da saída > dados diferentes
-- ENTRADA | PROCESSAMENTO | SAÍDA
-- um lado não vê o outro
-- camadas de abstração
+- obj ! precisam ser grandes/complexos
+- transformar tudo em obj
+- refactor difference
+
+= verificar por tipo é limitar a linguagem
+= contando que o objeto consiga responder ao to_i
+= lidar com objetos mais ricos ! precisa ser inteiro
+= ruby ajuda a mapear um nivel superior de abstracao != entre caneca e caneta
+= representar o comportamento de identico em varios pontos e trabalhar essa operação em vários pontos
+= similaridade de comportamento do codigo - faz sentido junto? faz sentido separado?
+> o que fica é a abstração que os caras deram não no tempo que durou
+> valor do unix não é no tempo que ele foi desenvolvido
+= focar no comportamento das coisas do que no tipo
+
+> OBJ seguir estratégias diferentes rapidamente - reimplementar usando ttd
