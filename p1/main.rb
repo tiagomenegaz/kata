@@ -6,7 +6,7 @@ require "./../lib/printer"
 
 config    = Configurer.new(primary: 1, secondary: 2, output_index: 0, reject_index: 0)
 raw_lines = Reader.new(file_name: "weather.dat").load_lines
-formatted = Formatter.new(raw_lines, config).formatted_lines
-processor = Processor.new(formatted, config)
-printer   = Printer.new(line: processor.run, config: config)
+formatted = Formatter.new(lines: raw_lines, config: config).formatted_lines
+line      = Processor.new(lines: formatted, indexes: config).run
+printer   = Printer.new(line: line, config: config)
 printer.start

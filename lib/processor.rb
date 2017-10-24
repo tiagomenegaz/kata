@@ -2,9 +2,9 @@
 # and returing the minium spread according to the main indexes
 
 class Processor
-  attr_reader :spread, :lines, :indexes
+  attr_reader :lines, :indexes
 
-  def initialize(lines, indexes)
+  def initialize(lines:, indexes:)
     @lines   = lines
     @indexes = indexes
   end

@@ -5,7 +5,7 @@ class Formatter
 
   attr_reader :lines, :config
 
-  def initialize(lines, config)
+  def initialize(lines:, config:)
     @lines  = lines
     @config = config
   end
