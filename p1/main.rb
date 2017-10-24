@@ -1,10 +1,18 @@
-require "./../lib/processor"
-require "./../lib/formatter"
-require "./../lib/configurer"
-require "./../lib/printer"
+def format(line)
+  line.gsub(/[^0-9,.]/, ' ').split[0..2].map(&:to_i)
+end
 
-config    = Configurer.new(primary: 1, secondary: 2, output_index: 0, reject_index: 0)
-raw_lines = IO.readlines("weather.dat")
-formatted = Formatter.lines_formatter(raw_lines, config.reject_index)
-processor = Processor.new(formatted, config)
-Printer.start(processor.run, config.output_index)
+File.open("weather.dat", "r") do |file|
+  min_spread = 100
+  min_day = nil
+  file.each_line do |line|
+    elements = format(line)
+    next if elements.size != 3 || elements[0] > 31
+
+    if (elements[1] - elements[2]) < min_spread
+      min_spread = elements[1] - elements[2]
+      min_day = elements[0]
+    end
+  end
+  puts "#{min_day}"
+end

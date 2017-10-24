@@ -1,10 +1,16 @@
-require "./../lib/processor"
-require "./../lib/formatter"
-require "./../lib/configurer"
-require "./../lib/printer"
+File.open("football.dat", "r") do |file|
+  team       = nil
+  min_spread = 100
 
-config    = Configurer.new(primary: -4, secondary: -2, output_index: 1, reject_index: 0)
-raw_lines = IO.readlines("football.dat")
-formatted = Formatter.lines_formatter(raw_lines, config.reject_index)
-processor = Processor.new(formatted, config)
-Printer.start(processor.run, config.output_index)
+  file.each_line do |line|
+    elements = line.split(" ")
+    next if elements.size != 10 && elements[0][-1] != "."
+
+    diff = (elements[-4].to_i - elements[-2].to_i).abs
+    if diff < min_spread
+      min_spread = diff
+      team = elements[1]
+    end
+  end
+  puts "Team is #{team}"
+end
