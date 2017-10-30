@@ -3,14 +3,21 @@
 
 class Printer
 
-  def self.start(line, output_index)
-    puts "#{Printer.find_element(line, output_index)}"
+  attr_reader :line, :config
+
+  def initialize(line:, config:)
+    @line   = line
+    @config = config
+  end
+
+  def start
+    puts "#{find_element}"
   end
 
   private
 
-  def self.find_element(line, output_index)
-    line.split(" ")[output_index]
+  def find_element
+    line.split(" ")[config.output_index]
   end
 
 end

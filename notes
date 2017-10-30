@@ -1,15 +1,13 @@
-- obj ! precisam ser grandes/complexos
-- transformar tudo em obj
-- refactor difference
+> !focar no tdd = TDD facilita quando conhece as formas diferentes
+> dividir em objetos que não necessariamente são da forma que eu faria
+____________________________________________
 
-= verificar por tipo é limitar a linguagem
-= contando que o objeto consiga responder ao to_i
-= lidar com objetos mais ricos ! precisa ser inteiro
-= ruby ajuda a mapear um nivel superior de abstracao != entre caneca e caneta
-= representar o comportamento de identico em varios pontos e trabalhar essa operação em vários pontos
-= similaridade de comportamento do codigo - faz sentido junto? faz sentido separado?
-> o que fica é a abstração que os caras deram não no tempo que durou
-> valor do unix não é no tempo que ele foi desenvolvido
-= focar no comportamento das coisas do que no tipo
-
-> OBJ seguir estratégias diferentes rapidamente - reimplementar usando ttd
+- exercitar formas diferentes de fazer o código
+- visualizar possibilidades
+- não tavar para resolver um problema
+- lab de exercícios de soluções diferentes
+- dividir em objeto é o mais básico
+- resolver problemas de formas diferentes => OBJETIVO
+- estudar formas diferentes de se fazer
+- buscar formas diferentes de solucionar esse problema
+- visualizar formas de refatorar
