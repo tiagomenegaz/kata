@@ -12,8 +12,8 @@ class Processor
   def run
     result, spread = initialize_values
 
-    lines.each do |line|
-      current_spread = spread_from(line)
+    lines.each_with_index do |line, line_index|
+      current_spread = spread_from(line_index)
 
       if current_spread < spread
         spread = current_spread
@@ -29,14 +29,14 @@ class Processor
     [ nil, 100000000000 ]
   end
 
-  def spread_from(line)
-    max = line_value_at(line, indexes.primary)
-    min = line_value_at(line, indexes.secondary)
+  def spread_from(line_index)
+    max = line_value_at(line_index, indexes.primary)
+    min = line_value_at(line_index, indexes.secondary)
     difference(max, min)
   end
 
-  def line_value_at(line, position)
-    line.split(" ")[position].to_i
+  def line_value_at(line_index, position)
+    lines[line_index].split(" ")[position].to_i
   end
 
   def difference(first_number, second_number)
