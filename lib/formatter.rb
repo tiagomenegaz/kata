@@ -1,14 +1,7 @@
 # The Formatter class is responsible for executing operations to space separeted
 # string given a position
 
-class Formatter
-
-  attr_reader :lines, :config
-
-  def initialize(lines:, config:)
-    @lines  = lines
-    @config = config
-  end
+class Formatter < BaseConfigurator
 
   def formatted_lines
     result = []

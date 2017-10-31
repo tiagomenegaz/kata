@@ -1,13 +1,14 @@
-> !focar no tdd = TDD facilita quando conhece as formas diferentes
-> dividir em objetos que não necessariamente são da forma que eu faria
+> testes para as classes
+> abstrair em um objeto classes semelhantes ok
+> abstrair o conteúdo do "lines" em um objeto
+> melhorar o require
 ____________________________________________
 
-- exercitar formas diferentes de fazer o código
-- visualizar possibilidades
-- não tavar para resolver um problema
-- lab de exercícios de soluções diferentes
-- dividir em objeto é o mais básico
-- resolver problemas de formas diferentes => OBJETIVO
-- estudar formas diferentes de se fazer
-- buscar formas diferentes de solucionar esse problema
-- visualizar formas de refatorar
+- parametros nomeados: vantagens melhor legibilidade, entender quando está chamando o método
+saber melhor que está sendo feito. a order não importa. saber somente os nomes.
+- forma padrão: saber a ordem, mas não sabe o nome
+- opções extras para passar para uma função/método
+- forma de inicializar uma estrutura de dados deve ser generica suficiente
+- quantidade de parametros fica ruim para utilizar
+- tipagem haskell + postgrest
+- enumerator ruby > uso para subistituir a logica de comparacao

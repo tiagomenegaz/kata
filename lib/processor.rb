@@ -1,13 +1,7 @@
 # The Processor class is responsible for processing the given set of input lines
-# and returing the minium spread according to the main indexes
+# and returing the minium spread according to the main config
 
-class Processor
-  attr_reader :lines, :indexes
-
-  def initialize(lines:, indexes:)
-    @lines   = lines
-    @indexes = indexes
-  end
+class Processor < BaseConfigurator
 
   def run
     result, spread = initialize_values
@@ -30,8 +24,8 @@ class Processor
   end
 
   def spread_from(line_index)
-    max = line_value_at(line_index, indexes.primary)
-    min = line_value_at(line_index, indexes.secondary)
+    max = line_value_at(line_index, config.primary)
+    min = line_value_at(line_index, config.secondary)
     difference(max, min)
   end
 
