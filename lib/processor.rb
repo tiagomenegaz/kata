@@ -1,13 +1,23 @@
 # The Processor class is responsible for processing the given set of input lines
 # and returing the minium spread according to the main config
 
-class Processor < BaseConfigurator
+class Processor
+
+  attr_reader :lines, :primary, :secondary
+
+  def initialize(lines, primary:, secondary:)
+    @lines = lines
+
+    @primary      = primary
+    @secondary    = secondary
+  end
+
 
   def run
     result, spread = initialize_values
 
-    lines.each_with_index do |line, line_index|
-      current_spread = spread_from(line_index)
+    lines.each_with_index do |line, index|
+      current_spread = spread_from(index)
 
       if current_spread < spread
         spread = current_spread
@@ -23,18 +33,14 @@ class Processor < BaseConfigurator
     [ nil, 100000000000 ]
   end
 
-  def spread_from(line_index)
-    max = line_value_at(line_index, config.primary)
-    min = line_value_at(line_index, config.secondary)
-    difference(max, min)
+  def spread_from(index)
+    max = line_value_at(index, primary)
+    min = line_value_at(index, secondary)
+    (max - min).abs
   end
 
-  def line_value_at(line_index, position)
-    lines[line_index].split(" ")[position].to_i
-  end
-
-  def difference(first_number, second_number)
-    (first_number - second_number).abs
+  def line_value_at(index, position)
+    lines[index].split(" ")[position].to_i
   end
 
 end

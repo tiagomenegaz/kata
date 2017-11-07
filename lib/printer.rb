@@ -3,11 +3,11 @@
 
 class Printer
 
-  attr_reader :line, :config
+  attr_reader :line, :output_index
 
-  def initialize(line:, config:)
+  def initialize(line, output_index:)
     @line   = line
-    @config = config
+    @output_index = output_index
   end
 
   def start
@@ -17,7 +17,7 @@ class Printer
   private
 
   def find_element
-    line.split(" ")[config.output_index]
+    line.split(" ")[output_index]
   end
 
 end
