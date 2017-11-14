@@ -6,15 +6,11 @@ require_relative "printer"
 # and returing the minium spread according to the main config
 
 class SpreadProcessor
-  attr_reader :file_name, :primary, :secondary, :output_index, :reject_index
+  attr_reader :file_name, :config
 
-  def initialize(file_name, primary:, secondary:, output_index:, reject_index:)
+  def initialize(file_name, config:)
+    @config    = config
     @file_name = file_name
-
-    @primary      = primary
-    @secondary    = secondary
-    @output_index = output_index
-    @reject_index = reject_index
   end
 
   def run
@@ -26,15 +22,15 @@ class SpreadProcessor
   private
 
   def build_actions
-    FileReader.new(file_name, reject_index: reject_index).formatted_lines
+    FileReader.new(file_name, reject_index: config.reject_index).formatted_lines
   end
 
   def run_processor(lines)
-    Processor.new(lines, primary: primary, secondary: secondary).run
+    Processor.new(lines, primary: config.primary, secondary: config.secondary).run
   end
 
   def output_result(result_line)
-    Printer.new(result_line, output_index: output_index).start
+    Printer.new(result_line, output_index: config.output_index).start
   end
 
 end

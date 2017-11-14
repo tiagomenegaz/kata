@@ -1,6 +1,8 @@
 require "./../lib/spread_processor"
+require "./../lib/configurer"
 
-processor = SpreadProcessor.new("weather.dat", primary: 1, secondary: 2, output_index: 0, reject_index: 0)
+config    = Configurer.new(primary: 1, secondary: 2, output_index: 0, reject_index: 0)
+processor = SpreadProcessor.new("weather.dat", config: config)
 processor.run
 
 ###
